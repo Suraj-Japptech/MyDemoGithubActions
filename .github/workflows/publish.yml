@@ -1,0 +1,63 @@
+name: Create and publish apk
+
+env:
+
+  #Name of the main project module
+  main_project_module: app
+  
+  #Name of the Repository
+  repository_name: My Demo Github Actions
+  
+
+on:
+  push:
+    branches:
+      ["main"]
+      
+jobs:
+  publish:
+    name: Publishing the Project and release
+    runs-on: ubuntu-latest
+    
+    
+    steps:
+       - name: "Set current date as env variable"
+         run: |
+          echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+         id: version  # this is used on variable path
+         
+       - name: Checkout code
+          uses: actions/checkout@v3
+        
+       - name: Setup Java Version
+          uses: actions/setup-java@v3
+          with:
+            java-version: '11'
+            distribution: 'temurin'
+            cache: gradle
+          
+      
+       - name: Grant Execute Permissions for Gradlew
+          run: chmod +x gradlew
+        
+       - name: Clean the Project
+          run: ./gradlew clean
+        
+       - name: Build the Project
+          run: ./gradlew assemble
+         
+         
+     # Upload Artifact Build
+     # Noted For Output [main_project_module]/build/outputs/apk/debug/
+       - name: Upload APK Debug - ${{ env.repository_name }}
+         uses: actions/upload-artifact@v3
+         with:
+           name: ${{ steps.version.outputs.builddate }} - ${{ env.repository_name }} - APK(s) debug generated
+           path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+           
+           
+        - name: Releasing using Hub
+          uses: kyze8439690/action-release-releaseapk@master
+          env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          APP_FOLDER: app
