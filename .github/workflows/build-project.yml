@@ -7,7 +7,7 @@ env:
   #Name of the Repository
   repository_name: My Demo Github Actions
 
-on: push
+on: [push,pull_request]
 
 jobs:
   run-lint:
