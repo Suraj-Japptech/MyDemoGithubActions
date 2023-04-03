@@ -4,17 +4,25 @@ on: push
 
 jobs:
   run-lint:
+  
     runs-on: ubuntu-latest
+    
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Setup Java Version
+        uses: actions/setup-java@v3
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
-
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "main"
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          java-version: 1.8
+          
+      
+      - name: Grant Execute Permissions for Gradlew
+        run: chmod +x gradlew
+        
+      - name: Clean the Project
+        run: ./gradlew clean
+        
+      - name: Build the Project
+        run: ./gradlew assemble
