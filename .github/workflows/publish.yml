@@ -27,24 +27,24 @@ jobs:
          id: version  # this is used on variable path
          
        - name: Checkout code
-          uses: actions/checkout@v3
+         uses: actions/checkout@v3
         
        - name: Setup Java Version
-          uses: actions/setup-java@v3
-          with:
+         uses: actions/setup-java@v3
+         with:
             java-version: '11'
             distribution: 'temurin'
             cache: gradle
           
       
        - name: Grant Execute Permissions for Gradlew
-          run: chmod +x gradlew
+         run: chmod +x gradlew
         
        - name: Clean the Project
-          run: ./gradlew clean
+         run: ./gradlew clean
         
        - name: Build the Project
-          run: ./gradlew assemble
+         run: ./gradlew assemble
          
          
      # Upload Artifact Build
@@ -56,8 +56,8 @@ jobs:
            path: ${{ env.main_project_module }}/build/outputs/apk/debug/
            
            
-        - name: Releasing using Hub
-          uses: kyze8439690/action-release-releaseapk@master
-          env:
+       - name: Releasing using Hub
+         uses: kyze8439690/action-release-releaseapk@master
+         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           APP_FOLDER: app
