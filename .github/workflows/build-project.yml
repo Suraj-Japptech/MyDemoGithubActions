@@ -11,7 +11,7 @@ on: [push,pull_request]
 
 jobs:
   run-lint:
-  
+    name: Build Project
     runs-on: ubuntu-latest
     
     
