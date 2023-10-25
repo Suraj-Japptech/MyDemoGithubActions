@@ -1,4 +1,4 @@
-package com.example.mygithubactions
+package demo.japptech.mygithubactions
 
 import org.junit.Test
 

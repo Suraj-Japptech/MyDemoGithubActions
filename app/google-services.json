@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280735083521",
+    "project_id": "my-github-actions-845e1",
+    "storage_bucket": "my-github-actions-845e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280735083521:android:a0e186db8048455e8e6400",
+        "android_client_info": {
+          "package_name": "demo.japptech.mygithubactions"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6N38ejn6Qr9mbkfR2vHx3uvIqUERtfZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
