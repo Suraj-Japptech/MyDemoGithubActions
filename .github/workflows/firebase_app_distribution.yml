@@ -20,7 +20,7 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Clean the project
+      - name: clean the project
         run: ./gradlew clean
       - name: build release
         run: ./gradlew assembleDebug
